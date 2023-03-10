@@ -1,7 +1,14 @@
 diff --git a/setup.cfg b/setup.cfg
-index 880a7f3..632a30f 100644
+index 880a7f3..f90aafa 100644
 --- a/setup.cfg
 +++ b/setup.cfg
+@@ -1,5 +1,5 @@
+ [metadata]
+-name = PySide6-QtAds
++name = PySide2-QtAds
+ version = 4.0.1.1.dev0
+ description = PySide6 bindings to Qt Advanced Docking System
+ long_description = file: README.md
 @@ -20,9 +20,6 @@ packages = find:
  package_dir =
      =src
@@ -12,3 +19,43 @@ index 880a7f3..632a30f 100644
  
  [options.packages.find]
  where = src
+diff --git a/setup.py b/setup.py
+index 58cdd85..2f0e9e2 100644
+--- a/setup.py
++++ b/setup.py
+@@ -9,18 +9,18 @@ import cmake_build_extension
+ import setuptools
+ from wheel.bdist_wheel import bdist_wheel
+ 
+-import PySide6
+-import shiboken6
++import PySide2
++import shiboken2
+ 
+ 
+-if os.getenv('PYSIDE6_QTADS_NO_HARD_PYSIDE_REQUIREMENT'):
++if os.getenv('PYSIDE2_QTADS_NO_HARD_PYSIDE_REQUIREMENT'):
+     install_requirements = [
+-        'PySide6', 'shiboken6'
++        'PySide2', 'shiboken2'
+     ]
+ else:
+     install_requirements = [
+-        f'PySide6=={PySide6.__version__}',
+-        f'shiboken6=={shiboken6.__version__}'
++        f'PySide2=={PySide2.__version__}',
++        f'shiboken2=={shiboken2.__version__}'
+     ]
+ 
+ 
+@@ -79,8 +79,8 @@ init_py = Path("init.py").read_text()
+ setuptools.setup(
+     ext_modules=[
+         CustomCMakeExtension(
+-            name="PySide6-QtAds",
+-            install_prefix="PySide6QtAds",
++            name="PySide2-QtAds",
++            install_prefix="PySide2QtAds",
+             write_top_level_init=init_py,
+             source_dir=str(Path(__file__).parent.absolute()),
+             cmake_configure_options=[
