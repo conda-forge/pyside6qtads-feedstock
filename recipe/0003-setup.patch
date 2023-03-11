@@ -1,12 +1,12 @@
 diff --git a/setup.cfg b/setup.cfg
-index 880a7f3..f90aafa 100644
+index f23f7e8..2937cc3 100644
 --- a/setup.cfg
 +++ b/setup.cfg
 @@ -1,5 +1,5 @@
  [metadata]
 -name = PySide6-QtAds
 +name = PySide2-QtAds
- version = 4.0.1.1.dev0
+ version = 4.0.1
  description = PySide6 bindings to Qt Advanced Docking System
  long_description = file: README.md
 @@ -20,9 +20,6 @@ packages = find:
