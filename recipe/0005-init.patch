@@ -1,7 +1,26 @@
 diff --git a/init.py b/init.py
-index b2b1dde..c36e381 100644
+index b2b1dde..51a3e01 100644
 --- a/init.py
 +++ b/init.py
+@@ -1,13 +1,13 @@
+ import platform
+ 
+ if platform.system() == 'Windows':
+-	import os, PySide6, shiboken6
+-	with os.add_dll_directory(os.path.dirname(PySide6.__file__)), \
+-	     os.add_dll_directory(os.path.dirname(shiboken6.__file__)):
+-		from .PySide6QtAds import ads as _ads
++	import os, PySide2, shiboken2
++	with os.add_dll_directory(os.path.dirname(PySide2.__file__)), \
++	     os.add_dll_directory(os.path.dirname(shiboken2.__file__)):
++		from .PySide2QtAds import ads as _ads
+ else:
+ 	# Runtime library dependencies resolved via rpath
+-	from .PySide6QtAds import ads as _ads
++	from .PySide2QtAds import ads as _ads
+ 
+ # DockWidgetArea
+ DockWidgetArea = _ads.DockWidgetArea
 @@ -53,14 +53,8 @@ CDockFocusController = _ads.CDockFocusController
  CDockManager = _ads.CDockManager
  CDockSplitter = _ads.CDockSplitter

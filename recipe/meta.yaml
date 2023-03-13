@@ -1,6 +1,6 @@
  {% set version = "4.0.1" %}
 package:
-  name: pyside6qtads
+  name: pyside2qtads
   version: {{ version }}
 
 source:
@@ -37,27 +37,26 @@ requirements:
   host:
     - python
     - cmake-build-extension
-    - qt6-main
-    - qt6-advanced-docking-system
-    - pyside6
+    - qt-main
+    - qt5-advanced-docking-system
+    - pyside2
     - pip
     - setuptools
     - xorg-libxfixes                 # [linux]
     
   run:
     - python
-    - pyside6
-    - {{ pin_compatible('qt6-advanced-docking-system', max_pin='x.x') }}
+    - pyside2
     
 test:
   imports:
-    - PySide6QtAds
+    - PySide2QtAds
 
 about:
   home: https://github.com/mborgerson/pyside6_qtads
   license: LGPL-2.1-only
   license_file: LICENSE
-  summary: PySide6 bindings for Qt-Advanced-Docking-System
+  summary: PySide2 bindings for Qt-Advanced-Docking-System
 
 extra:
   recipe-maintainers:
