@@ -1,5 +1,5 @@
 diff --git a/src/bindings.xml b/src/bindings.xml
-index abd9bcf..7a4d92d 100644
+index 84cf2ae..397f90f 100644
 --- a/src/bindings.xml
 +++ b/src/bindings.xml
 @@ -1,5 +1,5 @@
@@ -9,51 +9,16 @@ index abd9bcf..7a4d92d 100644
      <primitive-type name="bool"/>
      <primitive-type name="std::string"/>
      <primitive-type name="std::function"/>
-@@ -23,6 +23,7 @@
-         <enum-type name="eDragState" />
-         <enum-type name="eIcon" />
-         <enum-type name="eBitwiseOperator" />
-+        <enum-type name="SideBarLocation"/>
- 
-         <object-type name="CDockAreaTabBar">
-             <modify-function signature="CDockAreaTabBar(ads::CDockAreaWidget*)">
-@@ -150,7 +151,7 @@
-                     <parent index="this" action="add"/>
-                 </modify-argument>
-             </modify-function>
--            <modify-function signature="addDockWidget(ads::DockWidgetArea, ads::CDockWidget*, ads::CDockAreaWidget*)">
-+            <modify-function signature="addDockWidget(ads::DockWidgetArea, ads::CDockWidget*, ads::CDockAreaWidget*, int)">
-                 <modify-argument index="2">
-                     <parent index="this" action="add"/>
-                 </modify-argument>
-@@ -202,7 +203,7 @@
-                     <parent index="this" action="add"/>
-                 </modify-argument>
-             </modify-function>
--            <modify-function signature="addDockWidget(ads::DockWidgetArea, ads::CDockWidget*, ads::CDockAreaWidget*)">
-+            <modify-function signature="addDockWidget(ads::DockWidgetArea, ads::CDockWidget*, ads::CDockAreaWidget*, int)">
-                 <modify-argument index="2">
-                     <parent index="this" action="add"/>
-                 </modify-argument>
-@@ -215,7 +216,7 @@
-                     <parent index="this" action="add"/>
-                 </modify-argument>
-             </modify-function>
--            <modify-function signature="addDockWidgetTabToArea(ads::CDockWidget*, ads::CDockAreaWidget*)">
-+            <modify-function signature="addDockWidgetTabToArea(ads::CDockWidget*, ads::CDockAreaWidget*, int)">
-                 <modify-argument index="1">
-                     <parent index="this" action="add"/>
-                 </modify-argument>
-@@ -374,7 +375,7 @@
-             </modify-function>
-         </object-type>
- 
+@@ -445,7 +445,7 @@
+         
+         <object-type name="CResizeHandle" />
+         
 -        <object-type name="CDockOverlayCross">
 +        <!--<object-type name="CDockOverlayCross">
              <enum-type name="eIconColor"/>
          </object-type>
  
-@@ -382,7 +383,7 @@
+@@ -453,7 +453,7 @@
          <object-type name="CFloatingDragPreview"/>
          <object-type name="CSpacerWidget"/>
          <object-type name="CTitleBarButton"/>
