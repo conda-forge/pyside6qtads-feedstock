@@ -1,14 +1,25 @@
 diff --git a/setup.cfg b/setup.cfg
-index f23f7e8..2937cc3 100644
+index 2c32e65..bc71aa7 100644
 --- a/setup.cfg
 +++ b/setup.cfg
-@@ -1,5 +1,5 @@
+@@ -1,13 +1,13 @@
  [metadata]
 -name = PySide6-QtAds
 +name = PySide2-QtAds
- version = 4.0.1
- description = PySide6 bindings to Qt Advanced Docking System
+ version = 4.0.1.2
+-description = PySide6 bindings to Qt Advanced Docking System
++description = PySide2 bindings to Qt Advanced Docking System
  long_description = file: README.md
+ long_description_content_type = text/markdown
+ license = LGPL v2.1
+ platforms = any
+-url = https://github.com/mborgerson/pyside6_qtads/
+-keywords = PySide6, PySide, Qt, Advanced-Docking-System
++url = https://github.com/mborgerson/PySide6_qtads/
++keywords = PySide2, PySide, Qt, Advanced-Docking-System
+ classifiers =
+     Development Status :: 3 - Alpha
+     Intended Audience :: Developers
 @@ -20,9 +20,6 @@ packages = find:
  package_dir =
      =src
@@ -20,7 +31,7 @@ index f23f7e8..2937cc3 100644
  [options.packages.find]
  where = src
 diff --git a/setup.py b/setup.py
-index 58cdd85..2f0e9e2 100644
+index f24d240..a9a2f34 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -9,18 +9,18 @@ import cmake_build_extension
@@ -34,16 +45,16 @@ index 58cdd85..2f0e9e2 100644
  
  
 -if os.getenv('PYSIDE6_QTADS_NO_HARD_PYSIDE_REQUIREMENT'):
-+if os.getenv('PYSIDE2_QTADS_NO_HARD_PYSIDE_REQUIREMENT'):
++if os.getenv('PySide2_QTADS_NO_HARD_PYSIDE_REQUIREMENT'):
      install_requirements = [
--        'PySide6', 'shiboken6'
-+        'PySide2', 'shiboken2'
+-        'PySide6-Essentials', 'shiboken6'
++        'PySide2-Essentials', 'shiboken2'
      ]
  else:
      install_requirements = [
--        f'PySide6=={PySide6.__version__}',
+-        f'PySide6-Essentials=={PySide6.__version__}',
 -        f'shiboken6=={shiboken6.__version__}'
-+        f'PySide2=={PySide2.__version__}',
++        f'PySide2-Essentials=={PySide2.__version__}',
 +        f'shiboken2=={shiboken2.__version__}'
      ]
  

@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 1fb5475..ff46ccb 100644
+index 6203792..cffc563 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -9,10 +9,10 @@ endif()
@@ -41,7 +41,7 @@ index 1fb5475..ff46ccb 100644
  
  # The header file with all the types and functions for which bindings will be generated.
  # Usually it simply includes other headers of the library you are creating bindings for.
-@@ -57,24 +57,18 @@ set(generated_sources
+@@ -57,65 +57,34 @@ set(generated_sources
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cdockcomponentsfactory_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cdockcontainerwidget_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cdockfocuscontroller_wrapper.cpp
@@ -65,12 +65,11 @@ index 1fb5475..ff46ccb 100644
 -    ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/pyside6qtads_module_wrapper.cpp
 +    ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/pyside2qtads_module_wrapper.cpp
      )
-
-
-@@ -81,41 +81,16 @@ set(generated_sources
+ 
+ 
  # ================================== Shiboken detection ======================================
-
-
+ 
+ 
 -# Macro to get various pyside / python include / link flags and paths.
 -# Uses the not entirely supported utils/pyside_config.py file.
 -macro(pyside_config option output_var)
@@ -118,25 +117,25 @@ index 1fb5475..ff46ccb 100644
  if(NOT EXISTS ${shiboken_path})
      message(FATAL_ERROR "Shiboken executable not found at path: ${shiboken_path}")
  endif()
-@@ -123,14 +98,14 @@ endif()
-
+@@ -123,14 +92,14 @@ endif()
+ 
  # ==================================== RPATH configuration ====================================
-
+ 
 -set(CMAKE_SKIP_BUILD_RPATH TRUE)
 +# set(CMAKE_SKIP_BUILD_RPATH TRUE)
-
+ 
  if(UNIX AND NOT APPLE)
 -    set(CMAKE_INSTALL_RPATH "$ORIGIN/lib:$ORIGIN/../PySide6/:$ORIGIN/../PySide6/Qt/lib:$ORIGIN/../shiboken6")
 +    set(CMAKE_INSTALL_RPATH "$ORIGIN/lib:$ORIGIN/../PySide2/:$ORIGIN/../PySide2/Qt/lib:$ORIGIN/../shiboken2")
  endif()
-
+ 
  if(APPLE)
 -    set(CMAKE_INSTALL_RPATH "@loader_path/lib;@loader_path/../PySide6/;@loader_path/../PySide6/Qt/lib;@loader_path/../shiboken6")
 +    set(CMAKE_INSTALL_RPATH "@loader_path/lib;@loader_path/../PySide2/;@loader_path/../PySide2/Qt/lib;@loader_path/../shiboken2")
      set(MACOSX_RPATH TRUE)
  endif()
  
-@@ -133,7 +98,7 @@ endif()
+@@ -138,7 +107,7 @@ endif()
  
  # Get the relevant Qt include dirs, to pass them on to shiboken.
  set(QT_INCLUDE_DIR "")
@@ -145,7 +144,7 @@ index 1fb5475..ff46ccb 100644
  foreach(_Q ${QT_INCLUDE_DIR_LIST})
      if(NOT "${_Q}" MATCHES "QtCore$")
          set(QT_INCLUDE_DIR "${_Q}")
-@@ -146,26 +111,26 @@ endif()
+@@ -151,26 +120,26 @@ endif()
  set(QT_INCLUDES "")
  list(APPEND QT_INCLUDES "-I${QT_INCLUDE_DIR}")
  
@@ -177,7 +176,7 @@ index 1fb5475..ff46ccb 100644
      message(STATUS "*** QT_FRAMEWORK_INCLUDE_DIR is ${QT_FRAMEWORK_INCLUDE_DIR}")
      list(APPEND QT_INCLUDES "--framework-include-paths=${QT_FRAMEWORK_INCLUDE_DIR}")
  endif()
-@@ -186,15 +151,20 @@ foreach(_current ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+@@ -191,15 +160,20 @@ foreach(_current ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
      set(implicit_includes ${implicit_includes} "-I${_current}")
  endforeach()
  
@@ -200,7 +199,7 @@ index 1fb5475..ff46ccb 100644
      --output-directory=${CMAKE_CURRENT_BINARY_DIR}
      )
  
-@@ -221,17 +191,21 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
+@@ -226,17 +200,21 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
  # Apply relevant include and link flags.
  target_include_directories(${bindings_library} PRIVATE ${pyside_additional_includes})
  target_include_directories(${bindings_library} PRIVATE ${pyside_include_dir})
@@ -228,7 +227,7 @@ index 1fb5475..ff46ccb 100644
  target_compile_definitions(${bindings_library} PRIVATE "-DPy_LIMITED_API=0x03070000")
  
  # Adjust the name of generated module.
-@@ -248,11 +222,9 @@ if(APPLE)
+@@ -253,11 +231,9 @@ if(APPLE)
  endif(APPLE)
  
  if (WIN32)
@@ -241,7 +240,7 @@ index 1fb5475..ff46ccb 100644
  # ================================= Dubious deployment section ================================
  
  install(TARGETS ${bindings_library}
-@@ -260,16 +232,11 @@ install(TARGETS ${bindings_library}
+@@ -265,16 +241,11 @@ install(TARGETS ${bindings_library}
          RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}
          )
  
