@@ -53,8 +53,8 @@ index 6203792..cffc563 100644
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cdockwidget_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cdockwidgettab_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_celidinglabel_wrapper.cpp
--    ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cfloatingdockcontainer_wrapper.cpp
-     ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cfloatingdragpreview_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cfloatingdockcontainer_wrapper.cpp
+-     ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cfloatingdragpreview_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_ciconprovider_wrapper.cpp
 -    ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cspacerwidget_wrapper.cpp
 -    ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_ctitlebarbutton_wrapper.cpp
