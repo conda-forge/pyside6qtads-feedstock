@@ -1,9 +1,9 @@
-{% set name = "pyside6qtads" %}
+{% set name = "pyside2qtads" %}
 {% set version = "4.0.1.2" %}
 
 package:
-  name: pyside2qtads
-  version: {{ name|lower }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
   url: https://github.com/mborgerson/pyside6_qtads/archive/v{{ version }}.tar.gz
