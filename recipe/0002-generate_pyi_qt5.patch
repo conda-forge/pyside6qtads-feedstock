@@ -231,7 +231,7 @@ index 0000000..8d6502c
 +    plainname = import_name.split(".")[-1]
 +    outfilepath = os.path.join(outpath, plainname + ".pyi")
 +    top = __import__(import_name)
-+    obj = getattr(top, plainname)
++    obj = top
 +    if not getattr(obj, "__file__", None) or os.path.isdir(obj.__file__):
 +        raise ModuleNotFoundError("We do not accept a namespace as module "
 +                                  "{plainname}".format(**locals()))
