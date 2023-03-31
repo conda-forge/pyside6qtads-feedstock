@@ -266,7 +266,7 @@ index 0000000..8d6502c
 +            if line == "IMPORTS":
 +                if need_imports:
 +                    for mod_name in find_imports(outfile.getvalue()):
-+                        imp = "PySide2QtAds." + mod_name
++                        imp = mod_name
 +                        if imp != import_name:
 +                            wr.print("import " + imp)
 +                wr.print("import " + import_name)
@@ -303,7 +303,7 @@ index 0000000..8d6502c
 +
 +    outpath = outpath or os.path.dirname(PySide2QtAds.__file__)
 +    for mod_name in options.modules:
-+        import_name = "PySide2QtAds." + mod_name
++        import_name = mod_name
 +        generate_pyi(import_name, outpath, options)
 +
 +
