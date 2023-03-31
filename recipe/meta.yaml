@@ -20,6 +20,8 @@ build:
   number: 2
   script: {{ PYTHON }} {{ RECIPE_DIR }}/replace_qt_version.py && {{ PYTHON }} -m pip install . -vv  # [qt==5]
   script: {{ PYTHON }} -m pip install . -vv  # [qt==6]
+  # Shiboken2 is compatible with python up to 3.10
+  skip: True  # [qt==5 and py>=311]
   ignore_run_exports_from:
     # Just used for shiboken/pyside not used for python module
     - clangdev  # [not osx]
