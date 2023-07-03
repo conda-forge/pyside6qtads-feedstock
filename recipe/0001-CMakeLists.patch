@@ -26,6 +26,7 @@ index 6203792..a76c623 100644
 -set(qtads_subdir "Qt-Advanced-Docking-System")
 -set(qtads_dir ${CMAKE_CURRENT_SOURCE_DIR}/${qtads_subdir})
 -add_subdirectory(${qtads_subdir} EXCLUDE_FROM_ALL)
+ set(project_library "qt6advanceddocking")
  
  # The name of the generated bindings module (as imported in Python).
  set(bindings_library "PySide6QtAds")
