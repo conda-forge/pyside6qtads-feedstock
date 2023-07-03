@@ -11,7 +11,7 @@ index 6203792..a76c623 100644
  if(NOT Python3_Interpreter_FOUND)
      message(FATAL_ERROR "Python3 not found")
  endif()
-@@ -23,14 +23,14 @@ set(OpenGL_GL_PREFERENCE "LEGACY")
+@@ -23,15 +23,15 @@ set(OpenGL_GL_PREFERENCE "LEGACY")
  
  # Find the required Qt packages
  find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
