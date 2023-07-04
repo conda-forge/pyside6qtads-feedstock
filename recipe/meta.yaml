@@ -1,6 +1,12 @@
 {% set name = 'pyside2qtads' if qt == '5' else 'pyside6qtads' %}
 {% set version = "4.0.3" %}
 
+{% set qt = '6' if qt == '' else qt %}
+
+{% set version_list = version.split('.') %}
+{% set version_list = version_list[:3] if version_list|length > 3 else version_list %}
+{% set qtads_version = version_list|join('.') %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -39,15 +45,17 @@ requirements:
     - {{ cdt('libxdamage') }}        # [linux]
     - {{ cdt('libxxf86vm') }}        # [linux]
     - {{ cdt('libxext') }}           # [linux]
+    - {{ cdt('libglvnd-glx') }}      # [linux]
+    - {{ cdt('libglvnd-egl') }}      # [linux]
 
   host:
     - python
     - cmake-build-extension
     - qt6-main                       # [qt==6]
-    - qt6-advanced-docking-system    # [qt==6]
+    - qt6-advanced-docking-system =={{qtads_version}}    # [qt==6]
     - pyside6                        # [qt==6]
     - qt-main                        # [qt==5]
-    - qt5-advanced-docking-system    # [qt==5]
+    - qt5-advanced-docking-system =={{qtads_version}}    # [qt==5]
     - pyside2                        # [qt==5]
     - pip
     - setuptools
@@ -55,9 +63,9 @@ requirements:
   run:
     - python
     - pyside6                        # [qt==6]
-    - {{ pin_compatible('qt6-advanced-docking-system', max_pin='x.x') }}  # [qt==6]
+    - {{ pin_compatible('qt6-advanced-docking-system', max_pin='x.x.x') }}  # [qt==6]
     - pyside2                        # [qt==5]
-    - {{ pin_compatible('qt5-advanced-docking-system', max_pin='x.x') }}  # [qt==5]
+    - {{ pin_compatible('qt5-advanced-docking-system', max_pin='x.x.x') }}  # [qt==5]
 
 test:
   imports:
