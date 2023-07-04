@@ -52,10 +52,10 @@ requirements:
     - python
     - cmake-build-extension
     - qt6-main                       # [qt==6]
-    - qt6-advanced-docking-system =={{qtads_version}}    # [qt==6]
+    - qt6-advanced-docking-system =={{ qtads_version }}    # [qt==6]
     - pyside6                        # [qt==6]
     - qt-main                        # [qt==5]
-    - qt5-advanced-docking-system =={{qtads_version}}    # [qt==5]
+    - qt5-advanced-docking-system =={{ qtads_version }}    # [qt==5]
     - pyside2                        # [qt==5]
     - pip
     - setuptools
