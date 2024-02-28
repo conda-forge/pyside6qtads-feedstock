@@ -21,6 +21,7 @@ source:
     - 0003-setup.patch
     - 0004-bindings.patch
     - 0005-init.patch
+    - 0006-python-executable.patch # [qt==6]
 
 build:
   number: 0
