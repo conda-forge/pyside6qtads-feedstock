@@ -32,6 +32,12 @@ jobs:
       osx_64_python3.8.____cpythonqt6:
         CONFIG: osx_64_python3.8.____cpythonqt6
         UPLOAD_PACKAGES: 'True'
+      osx_64_python3.9.____73_pypyqt5:
+        CONFIG: osx_64_python3.9.____73_pypyqt5
+        UPLOAD_PACKAGES: 'True'
+      osx_64_python3.9.____73_pypyqt6:
+        CONFIG: osx_64_python3.9.____73_pypyqt6
+        UPLOAD_PACKAGES: 'True'
       osx_64_python3.9.____cpythonqt5:
         CONFIG: osx_64_python3.9.____cpythonqt5
         UPLOAD_PACKAGES: 'True'
