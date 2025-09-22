@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index c02188e..612d1ed 100644
+index ae08cb9..1680e9f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -12,7 +12,7 @@ endif()
@@ -26,7 +26,7 @@ index c02188e..612d1ed 100644
 -set(qtads_subdir "Qt-Advanced-Docking-System")
 -set(qtads_dir ${CMAKE_CURRENT_SOURCE_DIR}/${qtads_subdir})
 -add_subdirectory(${qtads_subdir} EXCLUDE_FROM_ALL)
- set(project_library "qt6advanceddocking")
+ set(project_library "qtadvanceddocking-qt6")
  
  # The name of the generated bindings module (as imported in Python).
 @@ -57,20 +57,14 @@ set(generated_sources
@@ -50,11 +50,10 @@ index c02188e..612d1ed 100644
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cpushbutton_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_cresizehandle_wrapper.cpp
      ${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}/ads_wrapper.cpp
-@@ -80,42 +74,16 @@ set(generated_sources
- 
+@@ -81,41 +75,16 @@ set(generated_sources
  # ================================== Shiboken detection ======================================
  
--
+ 
 -# Macro to get various pyside / python include / link flags and paths.
 -# Uses the not entirely supported utils/pyside_config.py file.
 -macro(pyside_config option output_var)
@@ -65,13 +64,13 @@ index c02188e..612d1ed 100644
 -    endif()
 -
 -    execute_process(
--      COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/pyside_config.py"
+-      COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/scripts/pyside_config.py"
 -              ${option}
 -      OUTPUT_VARIABLE ${output_var}
 -      OUTPUT_STRIP_TRAILING_WHITESPACE)
 -
 -    if ("${${output_var}}" STREQUAL "")
--        message(FATAL_ERROR "Error: Calling ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/pyside_config.py ${option} returned no output.")
+-        message(FATAL_ERROR "Error: Calling ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/pyside_config.py ${option} returned no output.")
 -    endif()
 -    if(is_list)
 -        string (REPLACE " " ";" ${output_var} "${${output_var}}")
@@ -102,7 +101,7 @@ index c02188e..612d1ed 100644
  if(NOT EXISTS ${shiboken_path})
      message(FATAL_ERROR "Shiboken executable not found at path: ${shiboken_path}")
  endif()
-@@ -123,8 +91,6 @@ endif()
+@@ -123,8 +92,6 @@ endif()
  
  # ==================================== RPATH configuration ====================================
  
@@ -111,7 +110,7 @@ index c02188e..612d1ed 100644
  if(UNIX AND NOT APPLE)
      set(CMAKE_INSTALL_RPATH "$ORIGIN/lib:$ORIGIN/../PySide6/:$ORIGIN/../PySide6/Qt/lib:$ORIGIN/../shiboken6")
  endif()
-@@ -191,15 +157,20 @@ foreach(_current ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+@@ -191,15 +158,20 @@ foreach(_current ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
      set(implicit_includes ${implicit_includes} "-I${_current}")
  endforeach()
  
@@ -134,7 +133,7 @@ index c02188e..612d1ed 100644
      --output-directory=${CMAKE_CURRENT_BINARY_DIR}
      )
  
-@@ -226,17 +197,21 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
+@@ -226,9 +198,9 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
  # Apply relevant include and link flags.
  target_include_directories(${bindings_library} PRIVATE ${pyside_additional_includes})
  target_include_directories(${bindings_library} PRIVATE ${pyside_include_dir})
@@ -145,23 +144,8 @@ index c02188e..612d1ed 100644
 +target_include_directories(${bindings_library} PRIVATE ${ads_include_dir})
  
  target_link_libraries(${bindings_library} PRIVATE Qt6::Widgets)
--target_link_libraries(${bindings_library} PRIVATE ${project_library})
- target_link_libraries(${bindings_library} PRIVATE ${pyside_shared_libraries})
- target_link_libraries(${bindings_library} PRIVATE ${shiboken_shared_libraries})
-+target_link_libraries(${bindings_library} PRIVATE ${ads_link_libraries})
-+target_link_libraries(${bindings_library} PRIVATE ${ads_shared_libraries})
-+target_link_libraries(${bindings_library} PUBLIC ads::qt6advanceddocking)
-+
-+if (UNIX)
-+    target_link_libraries(${bindings_library} PUBLIC PySide6::pyside6)
-+endif()
- 
--target_compile_options(qt6advanceddocking PRIVATE -Og -fPIC)
--target_compile_options(${bindings_library} PRIVATE -Og -fPIC)
- target_compile_definitions(${bindings_library} PRIVATE "-DPy_LIMITED_API=0x03070000")
- 
- # Adjust the name of generated module.
-@@ -253,10 +228,21 @@ if(APPLE)
+ target_link_libraries(${bindings_library} PRIVATE ${project_library})
+@@ -253,10 +225,22 @@ if(APPLE)
  endif(APPLE)
  
  if (WIN32)
@@ -182,10 +166,11 @@ index c02188e..612d1ed 100644
 +                  "${CMAKE_CURRENT_SOURCE_DIR}/support/generate_pyi.py" ${generate_pyi_options}
 +                  BYPRODUCTS "${CMAKE_CURRENT_BINARY_DIR}/${bindings_library}.pyi")
 +add_dependencies("${bindings_library}_pyi" ${bindings_library})
++
  
  # ================================= Dubious deployment section ================================
  
-@@ -265,16 +251,11 @@ install(TARGETS ${bindings_library}
+@@ -265,16 +249,11 @@ install(TARGETS ${bindings_library}
          RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}
          )
  
