@@ -54,10 +54,10 @@ requirements:
     - python
     - cmake-build-extension
     - qt6-main                       # [qt==6]
-    - qt6-advanced-docking-system =={{ qtads_version }}    # [qt==6]
+    - qtadvanceddocking-qt6 =={{ qtads_version }}    # [qt==6]
     - pyside6                        # [qt==6]
     - qt-main                        # [qt==5]
-    - qt5-advanced-docking-system =={{ qtads_version }}    # [qt==5]
+    - qtadvanceddocking-qt5 =={{ qtads_version }}    # [qt==5]
     - pyside2                        # [qt==5]
     - pip
     - setuptools
@@ -65,9 +65,9 @@ requirements:
   run:
     - python
     - pyside6                        # [qt==6]
-    - {{ pin_compatible('qt6-advanced-docking-system', max_pin='x.x.x') }}  # [qt==6]
+    - {{ pin_compatible('qtadvanceddocking-qt6', max_pin='x.x.x') }}  # [qt==6]
     - pyside2                        # [qt==5]
-    - {{ pin_compatible('qt5-advanced-docking-system', max_pin='x.x.x') }}  # [qt==5]
+    - {{ pin_compatible('qtadvanceddocking-qt5', max_pin='x.x.x') }}  # [qt==5]
 
 test:
   imports:
