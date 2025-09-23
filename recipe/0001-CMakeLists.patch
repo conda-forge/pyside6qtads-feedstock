@@ -17,7 +17,7 @@ index ae08cb9..1680e9f 100644
  find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 +find_package(Shiboken6 6.0.0 REQUIRED)
 +find_package(PySide6 6.0.0 REQUIRED)
-+find_package(qt6advanceddocking)
++find_package(qtadvanceddocking-qt6)
  
  # Set CPP standard to C++11 minimum.
  set(CMAKE_CXX_STANDARD 11)
@@ -93,9 +93,9 @@ index ae08cb9..1680e9f 100644
 +get_property(shiboken_shared_libraries TARGET Shiboken6::libshiboken PROPERTY IMPORTED_IMPLIB_RELEASE)
 +get_property(pyside_include_dir TARGET PySide6::pyside6 PROPERTY INTERFACE_INCLUDE_DIRECTORIES)
 +get_property(pyside_shared_libraries TARGET PySide6::pyside6 PROPERTY IMPORTED_IMPLIB_RELEASE)
-+get_property(ads_include_dir TARGET ads::qt6advanceddocking PROPERTY INTERFACE_INCLUDE_DIRECTORIES)
-+get_property(ads_link_libraries TARGET ads::qt6advanceddocking PROPERTY INTERFACE_LINK_LIBRARIES)
-+get_property(ads_shared_libraries TARGET ads::qt6advanceddocking PROPERTY IMPORTED_IMPLIB_RELEASE)
++get_property(ads_include_dir TARGET ads::qtadvanceddocking-qt6 PROPERTY INTERFACE_INCLUDE_DIRECTORIES)
++get_property(ads_link_libraries TARGET ads::qtadvanceddocking-qt6 PROPERTY INTERFACE_LINK_LIBRARIES)
++get_property(ads_shared_libraries TARGET ads::qtadvanceddocking-qt6 PROPERTY IMPORTED_IMPLIB_RELEASE)
 +
 +find_program(shiboken_path "shiboken6${CMAKE_EXECUTABLE_SUFFIX}")
  if(NOT EXISTS ${shiboken_path})
