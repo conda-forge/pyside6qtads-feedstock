@@ -17,9 +17,9 @@ source:
   patches:
     - 0001-CMakeLists.patch
     - 0002-generate_pyi_qt6.patch  # [qt==6]
-    - 0002-generate_pyi_qt5.patch  # [qt==5] 
+    - 0002-generate_pyi_qt5.patch  # [qt==5]
+    - 0003-bindings-qt5.patch  # [qt==5]
     - 0003-bindings.patch
-    - 0003-bindings-qt5.patch  # [qt==5] 
     - 0004-init.patch
 
 build:
