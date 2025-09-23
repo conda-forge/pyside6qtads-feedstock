@@ -20,12 +20,11 @@ source:
     - 0002-generate_pyi_qt5.patch  # [qt==5] 
     - 0003-bindings.patch
     - 0004-init.patch
-    - 0005-pyproject.patch
 
 build:
   number: 0
-  script: {{ PYTHON }} {{ RECIPE_DIR }}/replace_qt_version.py && {{ PYTHON }} -m pip install . -vv  # [qt==5]
-  script: {{ PYTHON }} -m pip install . -vv  # [qt==6]
+  script: {{ PYTHON }} {{ RECIPE_DIR }}/replace_qt_version.py && {{ PYTHON }} -m pip install . -vv --no-deps # [qt==5]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps # [qt==6]
   # Shiboken2 is compatible with python up to 3.10
   skip: true  # [qt==5 and py>=311]
   # Pyside6>=6.7 is not built against python <3.9
