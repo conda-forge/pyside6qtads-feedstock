@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index ae08cb9..1680e9f 100644
+index ae08cb9..1d4b6f2 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -12,7 +12,7 @@ endif()
@@ -133,7 +133,7 @@ index ae08cb9..1680e9f 100644
      --output-directory=${CMAKE_CURRENT_BINARY_DIR}
      )
  
-@@ -226,9 +198,9 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
+@@ -226,17 +198,17 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
  # Apply relevant include and link flags.
  target_include_directories(${bindings_library} PRIVATE ${pyside_additional_includes})
  target_include_directories(${bindings_library} PRIVATE ${pyside_include_dir})
@@ -144,7 +144,18 @@ index ae08cb9..1680e9f 100644
 +target_include_directories(${bindings_library} PRIVATE ${ads_include_dir})
  
  target_link_libraries(${bindings_library} PRIVATE Qt6::Widgets)
- target_link_libraries(${bindings_library} PRIVATE ${project_library})
+-target_link_libraries(${bindings_library} PRIVATE ${project_library})
+ target_link_libraries(${bindings_library} PRIVATE ${pyside_shared_libraries})
+ target_link_libraries(${bindings_library} PRIVATE ${shiboken_shared_libraries})
++target_link_libraries(${bindings_library} PRIVATE ${ads_link_libraries})
++target_link_libraries(${bindings_library} PRIVATE ${ads_shared_libraries})
++target_link_libraries(${bindings_library} PUBLIC ads::qtadvanceddocking-qt6)
+ 
+-target_compile_options(qtadvanceddocking-qt6 PRIVATE -Og -fPIC)
+-target_compile_options(${bindings_library} PRIVATE -Og -fPIC)
+ target_compile_definitions(${bindings_library} PRIVATE "-DPy_LIMITED_API=0x03090000")
+ 
+ # Adjust the name of generated module.
 @@ -253,10 +225,22 @@ if(APPLE)
  endif(APPLE)
  
