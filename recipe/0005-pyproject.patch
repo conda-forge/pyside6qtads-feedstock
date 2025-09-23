@@ -1,8 +1,8 @@
 diff --git a/pyproject.toml b/pyproject.toml
-index 4e12bc1..9d2d406 100644
+index 4e12bc1..e693682 100644
 --- a/pyproject.toml
 +++ b/pyproject.toml
-@@ -1,13 +1,4 @@
+@@ -1,13 +1,5 @@
  [build-system]
 -requires = [
 -    "wheel",
@@ -13,6 +13,7 @@ index 4e12bc1..9d2d406 100644
 -    "shiboken6",
 -    "shiboken6_generator"
 -]
++requires = 
  build-backend = "setuptools.build_meta"
  
  [project]
