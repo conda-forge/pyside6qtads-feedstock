@@ -20,6 +20,7 @@ source:
     - 0002-generate_pyi_qt5.patch  # [qt==5] 
     - 0003-bindings.patch
     - 0004-init.patch
+    - 0005-pyproject.patch
 
 build:
   number: 0
