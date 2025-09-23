@@ -78,7 +78,7 @@ test:
 about:
   home: https://github.com/mborgerson/pyside6_qtads
   license: LGPL-2.1-only
-  license_file: LICENSE
+  license_file: LICENSE.txt
   summary: PySide6 bindings for Qt-Advanced-Docking-System  # [qt==6]
   summary: PySide2 bindings for Qt-Advanced-Docking-System  # [qt==5]
 
