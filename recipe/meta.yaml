@@ -19,6 +19,7 @@ source:
     - 0002-generate_pyi_qt6.patch  # [qt==6]
     - 0002-generate_pyi_qt5.patch  # [qt==5] 
     - 0003-bindings.patch
+    - 0003-binding-qt5.patch  # [qt==5] 
     - 0004-init.patch
 
 build:

@@ -1,0 +1,13 @@
+diff --git a/src/bindings.xml b/src/bindings.xml
+index 805ed99..f8265bf 100644
+--- a/src/bindings.xml
++++ b/src/bindings.xml
+@@ -409,7 +409,7 @@
+                     <parent index="this" action="add"/>
+                 </modify-argument>
+             </modify-function>
+-            <declare-function signature="windowHandle()" return-type="QWindow"/>
++            <!--<declare-function signature="windowHandle()" return-type="QWindow"/>-->
+         </object-type>
+ 
+         <object-type name="CIconProvider">
