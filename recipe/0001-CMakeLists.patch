@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index ae08cb9..1d4b6f2 100644
+index ae08cb9..3d9477a 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -12,7 +12,7 @@ endif()
@@ -133,7 +133,7 @@ index ae08cb9..1d4b6f2 100644
      --output-directory=${CMAKE_CURRENT_BINARY_DIR}
      )
  
-@@ -226,17 +198,17 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
+@@ -226,17 +198,21 @@ add_library(${bindings_library} MODULE ${${bindings_library}_sources})
  # Apply relevant include and link flags.
  target_include_directories(${bindings_library} PRIVATE ${pyside_additional_includes})
  target_include_directories(${bindings_library} PRIVATE ${pyside_include_dir})
@@ -150,13 +150,17 @@ index ae08cb9..1d4b6f2 100644
 +target_link_libraries(${bindings_library} PRIVATE ${ads_link_libraries})
 +target_link_libraries(${bindings_library} PRIVATE ${ads_shared_libraries})
 +target_link_libraries(${bindings_library} PUBLIC ads::qtadvanceddocking-qt6)
++
++if (UNIX)
++    target_link_libraries(${bindings_library} PUBLIC PySide6::pyside6)
++endif()
  
 -target_compile_options(qtadvanceddocking-qt6 PRIVATE -Og -fPIC)
 -target_compile_options(${bindings_library} PRIVATE -Og -fPIC)
  target_compile_definitions(${bindings_library} PRIVATE "-DPy_LIMITED_API=0x03090000")
  
  # Adjust the name of generated module.
-@@ -253,10 +225,22 @@ if(APPLE)
+@@ -253,10 +229,22 @@ if(APPLE)
  endif(APPLE)
  
  if (WIN32)
@@ -181,7 +185,7 @@ index ae08cb9..1d4b6f2 100644
  
  # ================================= Dubious deployment section ================================
  
-@@ -265,16 +249,11 @@ install(TARGETS ${bindings_library}
+@@ -265,16 +253,11 @@ install(TARGETS ${bindings_library}
          RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}
          )
  
